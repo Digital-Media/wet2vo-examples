@@ -1,17 +1,40 @@
-# Auto detect text files and perform LF normalization
+# Global defaults
 * text=auto eol=lf
 
-# Custom for Visual Studio
-*.cs     diff=csharp
+# Documentation and repository config
+LICENSE text
+README.md text
+CHANGELOG.md text
+CONTRIBUTING.md text
+.gitignore text
+.gitattributes text
+.htaccess text
 
-# Standard to msysgit
-*.doc	 diff=astextplain
-*.DOC	 diff=astextplain
-*.docx diff=astextplain
-*.DOCX diff=astextplain
-*.dot  diff=astextplain
-*.DOT  diff=astextplain
-*.pdf  diff=astextplain
-*.PDF	 diff=astextplain
-*.rtf	 diff=astextplain
-*.RTF	 diff=astextplain
+# Code files
+*.php text
+*.inc.php text
+*.html text
+*.css text
+*.js text
+*.twig text
+*.latte text
+
+# Data and configuration formats
+*.json text
+*.xml text
+*.yaml text
+*.yml text
+
+# Gettext translation files
+*.po text
+*.mo binary
+
+# Binary assets
+*.pdf binary
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.ttf binary
+
+# Vector graphics (XML based)
+*.svg text
