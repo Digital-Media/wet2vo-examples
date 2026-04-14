@@ -1,4 +1,5 @@
 <?php
+
 if (0 == "foo") {
     echo "true"; // Vor PHP 8
 } else {

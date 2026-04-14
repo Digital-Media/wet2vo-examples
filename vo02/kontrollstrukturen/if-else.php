@@ -1,4 +1,5 @@
 <?php
+
 // if-else-Bedingung
 $name = "";
 if ($name !== "") {

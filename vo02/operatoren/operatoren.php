@@ -1,4 +1,5 @@
 <?php
+
 $a = 5;
 $b = 5.0;
 
@@ -21,7 +22,7 @@ echo $name . "<br>";
 
 
 // Null Coalescing Assignment Operator
-// $hero = "Batman";  // Diese Zeile ein- bzw. auskommentieren um die Funktionsweise zu testen
+// $hero = "Batman"; // Diese Zeile ein- bzw. auskommentieren um die Funktionsweise zu testen
 $hero ??= "Superman";
 echo "<p>$hero</p>";
 // Entspricht $hero = $hero ?? "Batman";

@@ -1,4 +1,5 @@
 <?php
+
 $str = "Hallo Welt";
 echo mb_substr($str, 2, 3) . "<br>"; // llo
 echo mb_substr($str, -2) . "<br>"; // lt
