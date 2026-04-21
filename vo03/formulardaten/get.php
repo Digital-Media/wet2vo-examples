@@ -13,7 +13,7 @@
 
 <?php
 if (isset($_GET["info"])) {
-    echo "<p>" . $_GET["info"] . "</p>";
+    echo "<p>{$_GET["info"]}</p>";
 }
 ?>
 </body>

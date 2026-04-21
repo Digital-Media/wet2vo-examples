@@ -10,8 +10,8 @@ function getSum($a, $b): int
 }
 
 echo "<p>Summe: " . getSum(3, 4) . "</p>"; // funktioniert
-echo "<p>Summe: " . getSum(3.0, 4.0) . "</p>"; // funktioniert, wenn declare(strict_types = 1) nicht gesetzt
-echo "<p>Summe: " . getSum(3.0, 2.5) . "</p>"; // funktioniert, wenn declare(strict_types = 1) nicht gesetzt,
+echo "<p>Summe: " . getSum(3.0, 4.0) . "</p>"; // funktioniert, wenn declare(strict_types=1) nicht gesetzt
+echo "<p>Summe: " . getSum(3.0, 2.5) . "</p>"; // funktioniert, wenn declare(strict_types=1) nicht gesetzt,
 // erzeugt aber als Ergebnis 5, weil auf int abgeschnitten wird
 
 // Nullable Rückgabewertsdeklaration
@@ -35,7 +35,7 @@ getNothing();
 // Never Returns (Aufruf auskommentiert, weil der Redirect die Datei verlässt)
 function redirect(string $uri): never
 {
-    header("Location: " . $uri);
+    header("Location: $uri");
     exit();
 }
 

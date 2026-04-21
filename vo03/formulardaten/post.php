@@ -13,7 +13,7 @@
 
 <?php
 if (isset($_POST["info"])) {
-    echo "<p>" . $_POST["info"] . "</p>";
+    echo "<p>{$_POST["info"]}</p>";
 }
 ?>
 </body>

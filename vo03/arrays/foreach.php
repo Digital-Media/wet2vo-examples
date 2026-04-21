@@ -15,5 +15,5 @@ $array2 = [
 ];
 
 foreach ($array2 as $key => $value) {
-    echo $key . ": " . $value; // Ausgabe: eins: 1zwei: 2drei: 3
+    echo "$key: $value"; // Ausgabe: eins: 1zwei: 2drei: 3
 }
