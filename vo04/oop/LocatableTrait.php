@@ -6,31 +6,13 @@
 trait LocatableTrait
 {
     /**
-     * @var float The latitude of the position.
+     * @var float|null The latitude of the position.
      */
-    public float $latitude {
-        /** @return float */
-        get {
-            return $this->latitude;
-        }
-        /** @param float $value */
-        set (float $value) {
-            $this->latitude = $value;
-        }
-    }
+    public ?float $latitude = null;
     /**
-     * @var float The longitude of the position.
+     * @var float|null The longitude of the position.
      */
-    public float $longitude {
-        /** @return float */
-        get {
-            return $this->longitude;
-        }
-        /** @param float $value */
-        set (float $value) {
-            $this->longitude = $value;
-        }
-    }
+    public ?float $longitude = null;
 
     /**
      * Returns the stored position as a coordinate pair.

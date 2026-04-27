@@ -3,7 +3,7 @@
 require "GeometricComponentInterface.php";
 
 /**
- * Generic implementation of a Rectangle with upper left and lower right corner and a color.
+ * Generic implementation of a Rectangle with an upper left and a lower right corner and a color.
  * Classic version without property promotion and property hooks.
  */
 class RectangleClassic implements GeometricComponentInterface
@@ -53,6 +53,7 @@ class RectangleClassic implements GeometricComponentInterface
      * @param int $dx The distance moved on the x-axis.
      * @param int $dy The distance moved on the y-axis.
      */
+    #[Override]
     public function move(int $dx, int $dy): void
     {
         $this->x1 += $dx;
@@ -99,6 +100,7 @@ class RectangleClassic implements GeometricComponentInterface
     /**
      * Draws this rectangle.
      */
+    #[Override]
     public function draw(): void
     {
         // ...

@@ -12,6 +12,7 @@ class Box extends Rectangle
     /**
      * Draws this box.
      */
+    #[Override]
     public function draw(): void
     {
         // Draw the front (Rectangle)

@@ -9,17 +9,26 @@ class ProductExporter
 {
     public function export(ExportFormat $format): void
     {
-        switch ($format) {
-            case ExportFormat::XML:
-                // Export to XML
-                break;
-            case ExportFormat::JSON:
-                // Export to JSON
-                break;
-            case ExportFormat::PDF:
-                // Export to PDF
-                break;
-        }
+        match ($format) {
+            ExportFormat::XML => $this->exportToXML(),
+            ExportFormat::JSON => $this->exportToJSON(),
+            ExportFormat::PDF => $this->exportToPDF(),
+        };
+    }
+
+    private function exportToXML(): void
+    {
+        // Export to XML
+    }
+
+    private function exportToJSON(): void
+    {
+        // Export to JSON
+    }
+
+    private function exportToPDF(): void
+    {
+        // Export to PDF
     }
 }
 

@@ -12,7 +12,7 @@ final class NoInheritance
 }
 
 /**
- * Class with final method and constant. This method and this constant cannot be overridden in a derived class.
+ * Class with a final method and constant. This method and this constant cannot be overridden in a derived class.
  */
 class CantOverrideEverything
 {
@@ -37,6 +37,7 @@ class InheritParts extends CantOverrideEverything
 {
     public const int CAN_OVERRIDE = 3;
 
+    #[Override]
     public function canOverride(): void
     {
         // ...

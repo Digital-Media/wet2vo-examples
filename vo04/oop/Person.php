@@ -14,5 +14,5 @@ class Person
 
 $pers = new Person();
 $pers->setPosition([48.368201, 14.514065]);
-echo "<p>Latitude: " . $pers->latitude . "°</p>";
-echo "<p>Longitude: " . $pers->longitude . "°</p>";
+echo "<p>Latitude: {$pers->latitude}°</p>";
+echo "<p>Longitude: {$pers->longitude}°</p>";

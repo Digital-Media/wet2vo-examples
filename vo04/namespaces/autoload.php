@@ -1,24 +1,27 @@
 <?php
 
 /**
- * Loads a class automatically based on the given namespace, if the directory structure maps the namespace.
- * @param $className string The name of the class to load (including namespace).
+ * Loads a class automatically based on the given namespace if the directory structure maps the namespace.
+ * @param string $fullyQualifiedClassName The name of the class to load (including namespace).
  * @return void Returns nothing.
  */
-function autoload(string $className): void
+function autoload(string $fullyQualifiedClassName): void
 {
-    $className = ltrim($className, "\\");
-    $fileName = "";
-    $namespace = "";
-    if ($lastNsPos = strrpos($className, "\\")) {
-        $namespace = substr($className, 0, $lastNsPos);
-        $className = substr($className, $lastNsPos + 1);
-        $fileName = str_replace("\\", DIRECTORY_SEPARATOR, $namespace)
-            . DIRECTORY_SEPARATOR;
-    }
-    $fileName .= str_replace("_", DIRECTORY_SEPARATOR, $className) . ".php";
+    $fullyQualifiedClassName = ltrim($fullyQualifiedClassName, "\\");
+    $filePath = "";
 
-    require $fileName;
+    if ($lastBackslashPosition = strrpos($fullyQualifiedClassName, "\\")) {
+        $namespace = substr($fullyQualifiedClassName, 0, $lastBackslashPosition);
+        $shortClassName = substr($fullyQualifiedClassName, $lastBackslashPosition + 1);
+        $filePath = str_replace("\\", DIRECTORY_SEPARATOR, $namespace) . DIRECTORY_SEPARATOR;
+    } else {
+        $shortClassName = $fullyQualifiedClassName;
+    }
+    $filePath .= "$shortClassName.php";
+
+    if (file_exists($filePath)) {
+        require $filePath;
+    }
 }
 
-spl_autoload_register("autoload");
+spl_autoload_register(autoload(...));

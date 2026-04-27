@@ -1,7 +1,7 @@
 <?php
 
 /**
- * The ExportFormat enum defines, which formats something could be exported to.
+ * The ExportFormat enum defines which formats something could be exported to.
  * Valid formats are XML, JSON, and PDF.
  */
 enum ExportFormat
