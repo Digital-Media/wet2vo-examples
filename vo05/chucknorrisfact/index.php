@@ -35,7 +35,7 @@ $categories = json_decode($categoriesBody);
 
 <?php
 if (isset($_POST["category"])) {
-    echo "<h2>Random fact from category " . $_POST["category"] . "</h2>";
+    echo "<h2>Random fact from category {$_POST["category"]}</h2>";
 
     $factResponse = $client->request(
         "GET",
@@ -49,7 +49,7 @@ if (isset($_POST["category"])) {
 
     $factBody = $factResponse->getBody();
     $fact = json_decode($factBody);
-    echo "<p>" . $fact->value . "</p>";
+    echo "<p>$fact->value</p>";
 }
 ?>
 </body>
