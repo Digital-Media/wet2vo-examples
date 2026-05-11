@@ -21,7 +21,7 @@ global $router;
 
 <?php
 if (isset($_POST["msg"])) {
-    echo "<p>Message: " . $_POST["msg"] . "</p>";
+    echo "<p>Message: {$_POST["msg"]}</p>";
 }
 ?>
 

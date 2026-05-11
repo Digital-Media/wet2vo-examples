@@ -2,7 +2,7 @@
 
 global $router;
 
-$basePath = $router->getBasePath();
+$basePath = $router->basePath;
 ?>
 
 <!DOCTYPE html>
@@ -29,7 +29,7 @@ $basePath = $router->getBasePath();
                 <a href="<?= $router->urlFor("/form") ?>" class="nav-link">PHP Form</a>
             </li>
             <li class="nav-item">
-                <a href="<?= $router->urlFor("/twigform") ?>" class="nav-link">Twig Form</a>
+                <a href="<?= $router->urlFor("/templateform") ?>" class="nav-link">Template Form</a>
             </li>
             <li class="nav-item">
                 <a href="<?= $router->urlFor("/product/1") ?>" class="nav-link">Product Page</a>
@@ -102,7 +102,7 @@ $basePath = $router->getBasePath();
         if (isset($_POST["nameInput"])) {
             echo '<div class="alert alert-success" role="alert">You successfully submitted this form! The result is shown below.</div>';
         }
-        ?>
+?>
 
         <div class="border p-3 mt-5">
             <h3>Example PHP Template Form</h3>
@@ -119,8 +119,8 @@ $basePath = $router->getBasePath();
         </div>
 
         <?php
-        if (isset($_POST["nameInput"])) {
-            ?>
+if (isset($_POST["nameInput"])) {
+    ?>
             <div class="border p-3 mt-5">
                 <h3>Example PHP Template Form Result</h3>
                 <p>The submitted name is shown as the author of the wise quote below.</p>
@@ -137,8 +137,8 @@ $basePath = $router->getBasePath();
                 </figure>
             </div>
             <?php
-        }
-        ?>
+}
+?>
     </main>
 
     <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">

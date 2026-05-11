@@ -67,7 +67,7 @@ The router invocation happens in `public/index.php`. This front controller file 
 4. Optional: Define a base path if your application is not located in your server's document root. 
 
    ```php
-   $router->setBasePath("/path/to/your/files");
+   $router->basePath = "/path/to/your/files";
    ```
 
 5. Run the router. This will fetch the current URI, match it against the defined routes, and execute them if a match is found.

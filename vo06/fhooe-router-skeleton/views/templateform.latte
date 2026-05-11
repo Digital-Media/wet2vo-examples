@@ -1,16 +1,15 @@
-{% extends "base.html.twig" %}
+{layout 'base.latte'}
 
-{% block title %}fhooe/router-skeleton: GET /twigform{% endblock title %}
+{block title}fhooe/router-skeleton: GET /templateform{/block}
 
-{% block main %}
-    <h2>GET /twigform</h2>
-    <p>This is the view for the "GET /twigform" route, a form using the Twig template engine.</p>
-    <p>It submits to the "POST /twigformresult" route, which is resolved through the provided <code>&#123;&#123;
-            url_for() &#125;&#125;</code> function.</p>
+{block main}
+    <h2>GET /templateform</h2>
+    <p>This is the view for the "GET /templateform" route, a form using the Latte template engine.</p>
+    <p>It submits to the "POST /templateformresult" route, which is resolved through the provided <code>{l}url_for('/templateformresult'){r}</code> function.</p>
 
     <div class="border p-3 mt-5">
-        <h3>Example Twig Template Form</h3>
-        <form method="post" action="{{ url_for("/twigformresult") }}">
+        <h3>Example Latte Template Form</h3>
+        <form method="post" action="{url_for('/templateformresult')}">
             <div class="mb-5">
                 <label for="nameInput" class="form-label">Your Name</label>
                 <input type="text" class="form-control" id="nameInput" name="nameInput"
@@ -53,4 +52,4 @@
             <button type="submit" class="btn btn-primary">Send</button>
         </form>
     </div>
-{% endblock main %}
+{/block main}

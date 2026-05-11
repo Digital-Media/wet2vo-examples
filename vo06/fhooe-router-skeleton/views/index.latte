@@ -1,8 +1,8 @@
-{% extends "base.html.twig" %}
+{layout 'base.latte'}
 
-{% block title %}fhooe/router-skeleton{% endblock %}
+{block title}fhooe/router-skeleton{/block}
 
-{% block main %}
+{block main}
     <hgroup>
         <h1>fhooe/router-skeleton</h1>
         <p class="lead">A skeleton application for fhooe/router.</p>
@@ -13,48 +13,48 @@
     <p>It acts as the index page. Try other routes below:</p>
 
     <div class="list-group">
-        <a href="{{ url_for("/form") }}" class="list-group-item list-group-item-action d-flex gap-3 py-3">
+        <a href="{url_for('/form')}" class="list-group-item list-group-item-action d-flex gap-3 py-3">
             <svg class="bi-2 align-self-center flex-shrink-0">
-                <use href="{{ get_base_path() }}/../views/images/bootstrap-icons.svg#input-cursor"></use>
+                <use href="{get_base_path()}/../views/images/bootstrap-icons.svg#input-cursor"></use>
             </svg>
             <div class="flex-fill">
                 <h6 class="mb-0">GET /form</h6>
                 <p class="mb-0 opacity-75">A simple PHP-based form that can be submitted via POST method.</p>
             </div>
         </a>
-        <a href="{{ url_for("/twigform") }}" class="list-group-item list-group-item-action d-flex gap-3 py-3">
+        <a href="{url_for('/templateform')}" class="list-group-item list-group-item-action d-flex gap-3 py-3">
             <svg class="bi-2 align-self-center flex-shrink-0">
-                <use href="{{ get_base_path() }}/../views/images/bootstrap-icons.svg#input-cursor-text"></use>
+                <use href="{get_base_path()}/../views/images/bootstrap-icons.svg#input-cursor-text"></use>
             </svg>
             <div class="flex-fill">
-                <h6 class="mb-0">GET /twigform</h6>
-                <p class="mb-0 opacity-75">A form rendered using the Twig template engine that can be submitted
+                <h6 class="mb-0">GET /templateform</h6>
+                <p class="mb-0 opacity-75">A form rendered using the Latte template engine that can be submitted
                     via POST method.</p>
             </div>
         </a>
-        <a href="{{ url_for("/product/1") }}" class="list-group-item list-group-item-action d-flex gap-3 py-3">
+        <a href="{url_for('/product/1')}" class="list-group-item list-group-item-action d-flex gap-3 py-3">
             <svg class="bi-2 align-self-center">
-                <use href="{{ get_base_path() }}/../views/images/bootstrap-icons.svg#box"></use>
+                <use href="{get_base_path()}/../views/images/bootstrap-icons.svg#box"></use>
             </svg>
             <div class="flex-fill">
-                <h6 class="mb-0">GET /product/{id}[/]</h6>
+                <h6 class="mb-0">GET /product/{l}id{r}[/]</h6>
                 <p class="mb-0 opacity-75">A product detail page demonstrating the use of URL placeholders and optional
                     parts.</p>
             </div>
         </a>
-        <a href="{{ url_for("/staticpage") }}" class="list-group-item list-group-item-action d-flex gap-3 py-3">
+        <a href="{url_for('/staticpage')}" class="list-group-item list-group-item-action d-flex gap-3 py-3">
             <svg class="bi-2 align-self-center flex-shrink-0">
-                <use href="{{ get_base_path() }}/../views/images/bootstrap-icons.svg#code-square"></use>
+                <use href="{get_base_path()}/../views/images/bootstrap-icons.svg#code-square"></use>
             </svg>
             <div class="flex-fill">
                 <h6 class="mb-0">GET /staticpage</h6>
                 <p class="mb-0 opacity-75">A static HTML page for displaying content that does not change.</p>
             </div>
         </a>
-        <a href="{{ url_for("/a/route/that/does/not/exist") }}"
+        <a href="{url_for('/a/route/that/does/not/exist')}"
            class="list-group-item list-group-item-action d-flex gap-3 py-3">
             <svg class="bi-2 align-self-center flex-shrink-0">
-                <use href="{{ get_base_path() }}/../views/images/bootstrap-icons.svg#exclamation-circle"></use>
+                <use href="{get_base_path()}/../views/images/bootstrap-icons.svg#exclamation-circle"></use>
             </svg>
             <div class="flex-fill">
                 <h6 class="mb-0">GET /a/route/that/does/not/exist</h6>
@@ -62,4 +62,4 @@
             </div>
         </a>
     </div>
-{% endblock main %}
+{/block main}

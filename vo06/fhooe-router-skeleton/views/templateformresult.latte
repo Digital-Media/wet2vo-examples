@@ -1,24 +1,24 @@
-{% extends "base.html.twig" %}
+{layout 'base.latte'}
 
-{% block title %}fhooe/router-skeleton: POST /twigformresult{% endblock title %}
+{block title}fhooe/router-skeleton: POST /templateformresult{/block}
 
-{% block main %}
-    <h2>POST /twigformresult</h2>
-    <p>This is the view for the "POST /twigformresult" route, a form using the Twig template engine. It was called by
-        the "GET /twigform" route and displays the form submission results.</p>
+{block main}
+    <h2>POST /templateformresult</h2>
+    <p>This is the view for the "POST /templateformresult" route, a form using the Latte template engine. It was called by
+        the "GET /templateform" route and displays the form submission results.</p>
 
     <div class="alert alert-success" role="alert">You successfully submitted this form! The result is shown below.</div>
 
     <div class="border p-3 mt-5">
-        <h3>Example Twig Template Form Result</h3>
+        <h3>Example Latte Template Form Result</h3>
         <p>The submitted name is shown as the author of the wise quote below.</p>
         <figure class="p-3 m-0">
             <blockquote class="blockquote">
                 <p>Lorem ipsum dolor sit amet.</p>
             </blockquote>
             <figcaption class="blockquote-footer">
-                {{ nameInput }}
+                {$nameInput}
             </figcaption>
         </figure>
     </div>
-{% endblock main %}
+{/block main}

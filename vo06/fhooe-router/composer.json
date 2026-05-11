@@ -1,5 +1,5 @@
 {
     "require": {
-        "fhooe/router": "^2.0"
+        "fhooe/router": "^3.0"
     }
 }

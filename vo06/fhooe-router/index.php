@@ -4,13 +4,13 @@ declare(strict_types=1);
 
 use Fhooe\Router\Router;
 
-require "vendor/autoload.php";
+require __DIR__ . "/vendor/autoload.php";
 
 // 1. Create the Router object
 $router = new Router();
 
 // 2. Optional: set the base path if the application is in a subdirectory
-$router->setBasePath("/hyp2vo-t1-examples/vl05/fhooe-router");
+$router->basePath = "/wet2vo-examples/vo06/fhooe-router";
 
 // 3. Define all the needed routes
 $router->get("/", function () {

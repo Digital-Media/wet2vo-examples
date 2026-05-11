@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Conditionals</title>
+    <meta charset="utf-8">
+</head>
+<body>
+<h1>if/elseif/else</h1>
+<h2>With Tags</h2>
+
+{if $gender === "male"}
+    <p>Welcome Sir!</p>
+{elseif $gender === "female"}
+    <p>Welcome Madam!</p>
+{else}
+    <p>Welcome non-binary Person!</p>
+{/if}
+
+<h1>ifset</h1>
+<h2>With Tags</h2>
+{ifset $name}
+    <p>Welcome {$name}!</p>
+{/ifset}
+
+<h2>With n:attributes</h2>
+<p n:ifset="$name">Welcome {$name}!</p>
+</body>
+</html>

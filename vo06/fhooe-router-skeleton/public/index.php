@@ -2,16 +2,15 @@
 
 declare(strict_types=1);
 
+use Fhooe\Latte\RouterExtension;
+use Fhooe\Latte\SessionExtension;
 use Fhooe\Router\Router;
-use Fhooe\Twig\RouterExtension;
-use Fhooe\Twig\SessionExtension;
+use Latte\Engine;
+use Latte\Loaders\FileLoader;
 use Monolog\Formatter\LineFormatter;
 use Monolog\Handler\StreamHandler;
 use Monolog\Logger;
 use Monolog\Processor\PsrLogMessageProcessor;
-use Twig\Environment;
-use Twig\Extension\DebugExtension;
-use Twig\Loader\FilesystemLoader;
 
 require "../vendor/autoload.php";
 
@@ -21,7 +20,7 @@ require "../vendor/autoload.php";
 //session_start();
 
 /**
- * Instantiated Router invocation. Create an object, define the routes and run it.
+ * Instantiated Router invocation. Create an object, define the routes, and run it.
  */
 // Create a monolog instance for logging in the skeleton.
 $logger = new Logger("skeleton-logger");
@@ -39,33 +38,23 @@ $logger->pushHandler($handler);
 // Create a new Router object with the logger.
 $router = new Router($logger);
 
-// Create a new Twig instance for advanced templates.
-$twig = new Environment(
-    new FilesystemLoader("../views"),
-    [
-        "cache" => "../cache",
-        "auto_reload" => true,
-        "debug" => true,
-    ],
-);
-
-// Add the router extension to Twig. This makes the url_for() and get_base_path() functions available in templates.
-$twig->addExtension(new RouterExtension($router));
-// Add the session extension to Twig. This makes the session() function available in templates to access entries in $_SESSION.
-$twig->addExtension(new SessionExtension());
-// Add the debug extension to Twig. This makes the dump() function available in templates to dump variables.
-$twig->addExtension(new DebugExtension());
+// Create a new Latte instance for advanced templates.
+$latte = new Engine();
+$latte->setLoader(new FileLoader(__DIR__ . "/../views"));
+$latte->setCacheDirectory(__DIR__ . "/../cache");
+$latte->addExtension(new RouterExtension($router));
+$latte->addExtension(new SessionExtension());
 
 // Set a base path if your code is not in your server's document root.
-$router->setBasePath("/hyp2vo-t1-examples/vl05/fhooe-router-skeleton/public");
+$router->basePath = "/wet2vo-examples/vo06/fhooe-router-skeleton/public";
 
-// Set a 404 callback that is executed when no route matches.
-// Example for the use of an arrow function. It automatically includes variables from the parent scope (such as $twig).
-$router->set404Callback(fn() => $twig->display("404.html.twig"));
+// Set a 404 callback executed when no route matches.
+// Example for the use of an arrow function. It automatically includes variables from the parent scope (such as $latte).
+$router->set404Callback(fn() => $latte->render("404.latte"));
 
 // Define all routes here.
-$router->get("/", function () use ($twig) {
-    $twig->display("index.html.twig");
+$router->get("/", function () use ($latte) {
+    $latte->render("index.latte");
 });
 
 $router->get("/form", function () {
@@ -76,16 +65,19 @@ $router->post("/form", function () {
     require __DIR__ . "/../views/form.php";
 });
 
-$router->get("/twigform", function () use ($twig) {
-    $twig->display("twigform.html.twig");
+$router->get("/templateform", function () use ($latte) {
+    $latte->render("templateform.latte");
 });
 
-$router->post("/twigformresult", function () use ($twig) {
-    $twig->display("twigformresult.html.twig", ["nameInput" => $_POST["nameInput"]]);
+$router->post("/templateformresult", function () use ($latte) {
+    $latte->render(
+        "templateformresult.latte",
+        ["nameInput" => $_POST["nameInput"]],
+    );
 });
 
-$router->get("/product/{id}[/]", function ($id) use ($twig) {
-    $twig->display("product.html.twig", ["id" => $id]);
+$router->get("/product/{id}[/]", function ($id) use ($latte) {
+    $latte->render("product.latte", ["id" => $id]);
 });
 
 $router->get("/staticpage", function () {

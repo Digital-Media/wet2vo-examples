@@ -1,47 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    {% block head %}
-        <meta charset="UTF-8">
-        <title>{% block title %}{% endblock %}</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="{{ get_base_path() }}/../views/css/bootstrap.min.css">
-        <link rel="stylesheet" href="{{ get_base_path() }}/../views/css/main.css">
-        <link rel="icon" href="{{ get_base_path() }}/../views/images/fhooe-router-logo.svg" type="image/svg+xml">
-    {% endblock head %}
+    {block head}
+    <meta charset="UTF-8">
+    <title>{block title}{/block}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{get_base_path()}/../views/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{get_base_path()}/../views/css/main.css">
+    <link rel="icon" href="{get_base_path()}/../views/images/fhooe-router-logo.svg" type="image/svg+xml">
+    {/block head}
 </head>
 <body>
 <div class="container">
     <header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom">
-        {% block header %}
-            <a href="{{ url_for("/") }}"
+        {block header}
+            <a href="{url_for('/')}"
                class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
-                <img src="{{ get_base_path() }}/../views/images/fhooe-router-logo.svg" alt="" height="32" class="me-2">
+                <img src="{get_base_path()}/../views/images/fhooe-router-logo.svg" alt="" height="32" class="me-2">
                 <span class="fs-4">fhooe/router-skeleton</span>
             </a>
 
             <ul class="nav nav-pills">
                 <li class="nav-item">
-                    <a href="{{ url_for("/form") }}" class="nav-link">PHP Form</a>
+                    <a href="{url_for('/form')}" class="nav-link">PHP Form</a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ url_for("/twigform") }}" class="nav-link">Twig Form</a>
+                    <a href="{url_for('/templateform')}" class="nav-link">Template Form</a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ url_for("/product/1") }}" class="nav-link">Product Page</a>
+                    <a href="{url_for('/product/1')}" class="nav-link">Product Page</a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ url_for("/staticpage") }}" class="nav-link">Static HTML Page</a>
+                    <a href="{url_for('/staticpage')}" class="nav-link">Static HTML Page</a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ url_for("/a/route/that/does/not/exist") }}" class="nav-link">404 Page</a>
+                    <a href="{url_for('/a/route/that/does/not/exist')}" class="nav-link">404 Page</a>
                 </li>
                 <li class="nav-item dropdown">
                     <button class="btn btn-link nav-link py-2 px-0 px-lg-2 dropdown-toggle d-flex align-items-center"
                             id="bd-theme" type="button" aria-expanded="false" data-bs-toggle="dropdown"
                             data-bs-display="static" aria-label="Toggle theme (dark)">
                         <svg class="bi my-1 theme-icon-active">
-                            <use href="{{ get_base_path() }}/../views/images/bootstrap-icons.svg#moon-stars-fill"></use>
+                            <use href="{get_base_path()}/../views/images/bootstrap-icons.svg#moon-stars-fill"></use>
                         </svg>
                         <span class="d-lg-none ms-2" id="bd-theme-text">Toggle theme</span>
                     </button>
@@ -50,11 +50,11 @@
                             <button type="button" class="dropdown-item d-flex align-items-center"
                                     data-bs-theme-value="light" aria-pressed="false">
                                 <svg class="bi me-2 opacity-50 theme-icon">
-                                    <use href="{{ get_base_path() }}/../views/images/bootstrap-icons.svg#sun-fill"></use>
+                                    <use href="{get_base_path()}/../views/images/bootstrap-icons.svg#sun-fill"></use>
                                 </svg>
                                 Light
                                 <svg class="bi ms-auto d-none">
-                                    <use href="{{ get_base_path() }}/../views/images/bootstrap-icons.svg#check2"></use>
+                                    <use href="{get_base_path()}/../views/images/bootstrap-icons.svg#check2"></use>
                                 </svg>
                             </button>
                         </li>
@@ -62,11 +62,11 @@
                             <button type="button" class="dropdown-item d-flex align-items-center active"
                                     data-bs-theme-value="dark" aria-pressed="true">
                                 <svg class="bi me-2 opacity-50 theme-icon">
-                                    <use href="{{ get_base_path() }}/../views/images/bootstrap-icons.svg#moon-stars-fill"></use>
+                                    <use href="{get_base_path()}/../views/images/bootstrap-icons.svg#moon-stars-fill"></use>
                                 </svg>
                                 Dark
                                 <svg class="bi ms-auto d-none">
-                                    <use href="{{ get_base_path() }}/../views/images/bootstrap-icons.svg#check2"></use>
+                                    <use href="{get_base_path()}/../views/images/bootstrap-icons.svg#check2"></use>
                                 </svg>
                             </button>
                         </li>
@@ -75,27 +75,27 @@
                                     data-bs-theme-value="auto"
                                     aria-pressed="false">
                                 <svg class="bi me-2 opacity-50 theme-icon">
-                                    <use href="{{ get_base_path() }}/../views/images/bootstrap-icons.svg#circle-half"></use>
+                                    <use href="{get_base_path()}/../views/images/bootstrap-icons.svg#circle-half"></use>
                                 </svg>
                                 Auto
                                 <svg class="bi ms-auto d-none">
-                                    <use href="{{ get_base_path() }}/../views/images/bootstrap-icons.svg#check2"></use>
+                                    <use href="{get_base_path()}/../views/images/bootstrap-icons.svg#check2"></use>
                                 </svg>
                             </button>
                         </li>
                     </ul>
                 </li>
             </ul>
-        {% endblock header %}
+        {/block header}
     </header>
 
     <main>
-        {% block main %}
-        {% endblock main %}
+        {block main}
+        {/block main}
     </main>
 
     <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
-        {% block footer %}
+        {block footer}
             <div class="col-lg-9 d-flex align-items-center">
                 <svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" id="Ebene_1" x="0" y="0"
                      viewBox="0 0 770.16 209.55" class="me-2">
@@ -114,15 +114,15 @@
                 <li class="ms-3">
                     <a class="text-muted" href="https://github.com/Digital-Media/fhooe-router-skeleton" target="_blank">
                         <svg class="bi">
-                            <use href="{{ get_base_path() }}/../views/images/bootstrap-icons.svg#github"></use>
+                            <use href="{get_base_path()}/../views/images/bootstrap-icons.svg#github"></use>
                         </svg>
                     </a>
                 </li>
             </ul>
-        {% endblock footer %}
+        {/block footer}
     </footer>
 </div>
-<script src="{{ get_base_path() }}/../views/js/bootstrap.bundle.min.js"></script>
-<script src="{{ get_base_path() }}/../views/js/main.js"></script>
+<script src="{get_base_path()}/../views/js/bootstrap.bundle.min.js"></script>
+<script src="{get_base_path()}/../views/js/main.js"></script>
 </body>
 </html>

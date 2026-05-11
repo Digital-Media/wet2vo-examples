@@ -7,9 +7,9 @@ $method = $_SERVER["REQUEST_METHOD"];
 $path = $_SERVER["REQUEST_URI"];
 
 // If the application is not in the server's root application, we need to add this part of the path as base path
-$basePath = "/hyp2vo-t1-examples/vl05/routing";
+$basePath = "/wet2vo-examples/vo06/routing";
 
-// If we have a base path set we need to remove it now in order to only get the important path of the route
+// If we have a base path set, we need to remove it now to only get the important path of the route
 if (!empty($basePath)) {
     $path = substr($path, strlen($basePath));
 }
