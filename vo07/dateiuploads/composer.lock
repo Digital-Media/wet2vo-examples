@@ -4,43 +4,34 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "d6cd74ed65a91ea271c8dfb93919ec8b",
+    "content-hash": "7ef3336acc077ce83b508d3a6b442bc0",
     "packages": [
         {
-            "name": "siriusphp/upload",
-            "version": "4.0.0",
+            "name": "samayo/bulletproof",
+            "version": "v5.0.2",
             "source": {
                 "type": "git",
-                "url": "https://github.com/siriusphp/upload.git",
-                "reference": "b3c2bb40a90641421c7e12be00f50eaf62942b91"
+                "url": "https://github.com/samayo/bulletproof.git",
+                "reference": "d29806700a611c6e0d2649dbbf6e70af839c5dbf"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/siriusphp/upload/zipball/b3c2bb40a90641421c7e12be00f50eaf62942b91",
-                "reference": "b3c2bb40a90641421c7e12be00f50eaf62942b91",
+                "url": "https://api.github.com/repos/samayo/bulletproof/zipball/d29806700a611c6e0d2649dbbf6e70af839c5dbf",
+                "reference": "d29806700a611c6e0d2649dbbf6e70af839c5dbf",
                 "shasum": ""
             },
             "require": {
-                "php": ">=8.1",
-                "siriusphp/validation": "^4.0"
+                "ext-exif": "*",
+                "php": ">=8.1.0"
             },
             "require-dev": {
-                "laminas/laminas-diactoros": "^3.3",
-                "pestphp/pest": "^2.24",
-                "pestphp/pest-plugin-drift": "^2.5",
-                "phpstan/phpstan": "^1.10",
-                "symfony/http-foundation": "^6.3",
-                "symfony/mime": "^6.3"
-            },
-            "suggest": {
-                "knplabs/gaufrette": "Alternative filesystem abstraction library for upload destinations",
-                "league/flysystem": "To upload to different destinations, not just to the local file system"
+                "phpunit/phpunit": "^8"
             },
             "type": "library",
             "autoload": {
-                "psr-4": {
-                    "Sirius\\Upload\\": "src/"
-                }
+                "classmap": [
+                    "src/"
+                ]
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
@@ -48,77 +39,22 @@
             ],
             "authors": [
                 {
-                    "name": "Adrian Miu",
-                    "email": "adrian@adrianmiu.ro"
+                    "name": "samayo"
                 }
             ],
-            "description": "Framework agnostic upload library",
+            "description": "A simple and secure PHP image uploader",
+            "homepage": "http://github.com/samayo/bulletproof",
             "keywords": [
-                "file",
-                "file upload",
-                "form",
-                "psr-7",
+                "Simple",
+                "image",
                 "security",
-                "upload",
-                "validation"
+                "upload"
             ],
             "support": {
-                "issues": "https://github.com/siriusphp/upload/issues",
-                "source": "https://github.com/siriusphp/upload/tree/4.0.0"
+                "issues": "https://github.com/samayo/bulletproof/issues",
+                "source": "https://github.com/samayo/bulletproof/tree/v5.0.2"
             },
-            "time": "2023-11-19T17:38:36+00:00"
-        },
-        {
-            "name": "siriusphp/validation",
-            "version": "4.0.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/siriusphp/validation.git",
-                "reference": "4704128b2b8e6fc781025e1594b337202478a197"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/siriusphp/validation/zipball/4704128b2b8e6fc781025e1594b337202478a197",
-                "reference": "4704128b2b8e6fc781025e1594b337202478a197",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=8.0"
-            },
-            "require-dev": {
-                "pestphp/pest": "*",
-                "pestphp/pest-plugin-drift": "^2.5",
-                "phpstan/phpstan": "^1.10"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Sirius\\Validation\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Adrian Miu",
-                    "email": "adrian@adrianmiu.ro"
-                }
-            ],
-            "description": "Data validation library. Validate arrays, array objects, domain models etc using a simple API. Easily add your own validators on top of the already dozens built-in validation rules",
-            "keywords": [
-                "form",
-                "modeling",
-                "sanitization",
-                "security",
-                "validation"
-            ],
-            "support": {
-                "issues": "https://github.com/siriusphp/validation/issues",
-                "source": "https://github.com/siriusphp/validation/tree/4.0.0"
-            },
-            "time": "2023-11-19T15:40:43+00:00"
+            "time": "2024-05-05T18:26:57+00:00"
         }
     ],
     "packages-dev": [],
@@ -129,5 +65,5 @@
     "prefer-lowest": false,
     "platform": {},
     "platform-dev": {},
-    "plugin-api-version": "2.6.0"
+    "plugin-api-version": "2.9.0"
 }

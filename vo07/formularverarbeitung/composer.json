@@ -1,5 +1,5 @@
 {
     "require": {
-        "ezyang/htmlpurifier": "^4.18"
+        "symfony/html-sanitizer": "^8.0"
     }
 }

@@ -1,5 +1,5 @@
 {
     "require": {
-        "siriusphp/upload": "^4.0"
+        "samayo/bulletproof": "^5.0"
     }
 }

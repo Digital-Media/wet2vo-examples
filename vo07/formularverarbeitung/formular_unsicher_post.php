@@ -16,7 +16,7 @@
 
 <?php
 if (isset($_POST["daten"])) {
-    echo "<p>" . $_POST["daten"] . "</p>";
+    echo "<p>{$_POST["daten"]}</p>";
 }
 ?>
 </body>

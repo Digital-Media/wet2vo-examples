@@ -16,7 +16,7 @@
 
 <?php
 if (isset($_GET["daten"])) {
-    echo "<p>" . $_GET["daten"] . "</p>";
+    echo "<p>{$_GET["daten"]}</p>";
 }
 ?>
 </body>
