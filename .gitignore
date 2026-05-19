@@ -23,6 +23,10 @@ cache/
 templates_c/
 temp/
 
+# Uploads
+uploads/
+!uploads/.gitkeep
+
 # Logs and OS Files
 *.log
 .DS_Store
