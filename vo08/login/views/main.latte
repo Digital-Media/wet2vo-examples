@@ -1,0 +1,12 @@
+{extends 'base.latte'}
+
+{block title}Login Example: Main Page{/block}
+{block main}
+    <h2>GET /main</h2>
+    <p>This is main page. You can only access it after a successful login.</p>
+
+    <h3>Welcome {session(email)}</h3>
+    <p>You have successfully logged in!</p>
+
+    <p><a href="{url_for('/logout')}">Log out</a></p>
+{/block}

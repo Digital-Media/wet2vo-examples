@@ -1,19 +1,27 @@
-{% extends "base.html.twig" %}
+{extends 'base.latte'}
 
-{% block title %}Login Example: Login Page{% endblock title %}
-{% block main %}
+{block title}Login Example: Login Page{/block}
+{block main}
     <h2>GET /login</h2>
     <p>Please log in to access the "GET /main" route.</p>
 
     <div class="border p-3 mt-5">
         <h3>Login</h3>
 
-        {{ include("errors.html.twig") }}
+        {if (isset($messages) && (($messages|length) > 0))}
+            <div class="alert alert-danger mt-3" role="alert">
+                <ul class="mb-0">
+                    {foreach $messages as $error}
+                        <li>{$error}</i></li>
+                    {/foreach}
+                </ul>
+            </div>
+        {/if}
 
-        <form method="post" action="{{ url_for("/login") }}" novalidate>
+        <form method="post" action="{url_for('/login')}" novalidate>
             <div class="mb-3">
                 <label for="email" class="form-label">Email address</label>
-                <input type="email" class="form-control" id="email" name="email" value="{{ email }}"
+                <input type="email" class="form-control" id="email" name="email" value="{$email ?? ''}"
                        placeholder="you@example.com" aria-describedby="emailHelp" autocomplete="email" required>
                 <div id="emailHelp" class="form-text">Please enter the email address you registered with.</div>
             </div>
@@ -27,4 +35,4 @@
             <button type="submit" class="btn btn-primary">Sign in</button>
         </form>
     </div>
-{% endblock main %}
+{/block}

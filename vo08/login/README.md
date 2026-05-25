@@ -67,7 +67,7 @@ The router invocation happens in `public/index.php`. This front controller file 
 4. Optional: Define a base path if your application is not located in your server's document root. 
 
    ```php
-   $router->setBasePath("/path/to/your/files");
+   $router->basePath = "/path/to/your/files";
    ```
 
 5. Run the router. This will fetch the current URI, match it against the defined routes, and execute them if a match is found.
@@ -76,36 +76,14 @@ The router invocation happens in `public/index.php`. This front controller file 
    $router->run();
    ```
 
-### Using the Static Routing Method `Router::getRoute()`
-
-1. Invoke the static method. Provide a base path as an argument if your project is not located in your server's document root. The method returns the route as a string in the form of `METHOD /pattern` , e.g., `GET /`, when a GET request was made to the root directory.
-
-   ```php
-   $route = Router::getRoute("/path/to/your/files");
-   ```
-
-2. Use a conditional expression to decide what to do with the matched route.
-
-   ```php
-   switch($route) {
-       case "GET /":
-           // e.g., load a view
-           break;
-       default:
-           // e.g., load the 404 view
-           break;
-   }
-   ```
-
 ## Displaying Output
 
-Simple example view files in the form of HTML and PHP files are located in the `views` directory together with [Twig](https://packagist.org/packages/twig/twig) examples for cleaner output.
+Simple example view files in the form of HTML and PHP files are located in the `views` directory together with [Latte](https://packagist.org/packages/latte/latte) examples for cleaner output.
 
-Three Twig extensions have been added.
+Two [Latte extensions](https://packagist.org/packages/fhooe/latte-extensions) have been added.
 
 - `RouterExtension` provides the functions `url_for()` and `get_base_path()` in templates for generating URLs and retrieving the base path from the `Router` object.
 - `SessionExtension` provides the function `session(key)` for retrieving entries in the `$_SESSION` superglobal.
-- `DebugExtension` provides the function `dump()` for dumping variables in templates (similar to `var_dump()`).
 
 ## Browsing the Application
 

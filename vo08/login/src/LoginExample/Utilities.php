@@ -6,11 +6,11 @@ use Random\RandomException;
 
 /**
  * Offers static helper methods for often used tasks.
- * This class offers methods for sanitizing form input, checks for valid e-mail addresses, phone numbers and other kinds
+ * This class offers methods for sanitizing form input, checks for valid e-mail addresses, phone numbers, and other kinds
  * of data. This code can be used in different classes.
  * @package LoginExample
- * @author Wolfgang Hochleitner <wolfgang.hochleitner@fh-hagenberg.at>
- * @version 2025
+ * @author  Wolfgang Hochleitner <wolfgang.hochleitner@fh-hagenberg.at>
+ * @version 2026
  */
 class Utilities
 {
@@ -25,7 +25,7 @@ class Utilities
     }
 
     /**
-     * Checks if a given string is a valid e-mail address according to the employed pattern.
+     * Checks if a given string is a valid e-mail address, according to the employed pattern.
      * @see https://www.regular-expressions.info/email.html More information about e-mail validation using regex.
      * @param string $string The input string that is to be checked.
      * @return bool Returns true if the string is a valid e-mail address, otherwise false.
@@ -33,14 +33,14 @@ class Utilities
     public static function isEmail(string $string): bool
     {
         // $emailPattern = "/^[\w.-]+@[\w.-]+\.[A-Za-z]{2,6}$/"; // easy pattern
-        $emailPattern = "/^[a-zA-Z0-9._-]+@[a-zA-Z0-9-]+\.[a-zA-Z.]{2,5}$/"; // more complicate pattern
+        $emailPattern = "/^[a-zA-Z0-9._-]+@[a-zA-Z0-9-]+\.[a-zA-Z.]{2,5}$/"; // more complicated pattern
 
         return preg_match($emailPattern, $string) === 1;
     }
 
     /**
      * Checks if a given string is a valid phone number. Du to the vast number of phone number formats, not everything
-     * is covered by this regular expression. Strings such as +43 732 1234-1234 should work though.
+     * is covered by this regular expression. Strings such as +43 732 1234-1234 should work, though.
      * @see https://github.com/googlei18n/libphonenumber Project for validating phone numbers.
      * @param string $string The input string that is to be checked.
      * @return bool Returns true if the string is a valid phone number, otherwise false.
@@ -91,8 +91,8 @@ class Utilities
 
     /**-+
      * Performs a white listing of the supplied characters and checks for minimum and maximum length. White spaces are
-     * excluded, therefore only one search term can be entered. This is tailored for database exercises, where LIKE is
-     * employed instead of a full text search. Production environment will more likely use ElasticSearch or Google
+     * excluded. Therefore, only one search term can be entered. This is tailored for database exercises, where LIKE is
+     * used instead of a full-text search. Production environment will more likely use ElasticSearch or Google
      * crawler.
      * @param string $string The input string that is to be checked.
      * @param int $min The string's minimum length. Default value is 0.
@@ -134,8 +134,8 @@ class Utilities
 
     /**
      * Quick and dirty method for replacing the most common umlauts in a string with regular ASCII characters.
-     * Useful when dealing with file names that are provided by the file system. Windows actually delivers e.g. an "ä",
-     * whereas macOS does a diaeresis of a and two dots, which is seen as e.g. \x61\xcc\x88
+     * Useful when dealing with file names that are provided by the file system. Windows actually delivers e.g., an "ä",
+     * whereas macOS does a diaeresis of a and two dots, which is seen as e.g., \x61\xcc\x88
      * @param string $string The input string where replacements should be performed.
      * @return string A string without umlauts.
      */

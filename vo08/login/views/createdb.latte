@@ -1,0 +1,12 @@
+{extends 'base.latte'}
+
+{block title}Login Example: Create Database{/block}
+{block main}
+    <h2>GET /createdb</h2>
+    <p>This page creates the necessary database, table and user entries for testing the login example.</p>
+
+    <h3>Results</h3>
+    <p>Database created: {$schemaCreated}.</p>
+    <p>Table created: {$tableCreated}.</p>
+    <p>Number of users created: {$nrOfUsersCreated}.</p>
+{/block}

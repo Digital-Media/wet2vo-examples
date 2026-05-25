@@ -3,12 +3,10 @@
 namespace LoginExample;
 
 use Fhooe\Router\Router;
+use Latte\Engine;
 use PDO;
+use Pdo\Mysql;
 use Random\RandomException;
-use Twig\Environment;
-use Twig\Error\LoaderError;
-use Twig\Error\RuntimeError;
-use Twig\Error\SyntaxError;
 
 /**
  * This class enables users to log in to the system with a provided username and password. Both items are matched with
@@ -16,8 +14,8 @@ use Twig\Error\SyntaxError;
  * Other pages can then use check for this token before the site is initialized and perform a redirect to prevent
  * accessing the page
  * @package LoginExample
- * @author Wolfgang Hochleitner <wolfgang.hochleitner@fh-hagenberg.at>
- * @version 2025
+ * @author  Wolfgang Hochleitner <wolfgang.hochleitner@fh-hagenberg.at>
+ * @version 2026
  */
 final class Login
 {
@@ -33,9 +31,9 @@ final class Login
     private array $messages = [];
 
     /**
-     * @var Environment Provides a Twig object to display HTML templates.
+     * @var Engine Provides a Latte object to display HTML templates.
      */
-    private Environment $twig;
+    private Engine $latte;
 
     /**
      * @var Router The Router object for redirecting the user to the main page after a successful login.
@@ -43,14 +41,14 @@ final class Login
     private Router $router;
 
     /**
-     * Creates a new Login object. It takes a Twig Environment object used to display a response (output).
+     * Creates a new Login object. It takes a Latte Engine object used to display a response (output).
      * The constructor needs to initialize the database for reading and updating user information.
-     * @param Environment $twig The Twig object for displaying a response.
+     * @param Engine $latte  The Latte object for displaying a response.
      * @param Router $router The Router object for redirecting the user to the main page after a successful login.
      */
-    public function __construct(Environment $twig, Router $router)
+    public function __construct(Engine $latte, Router $router)
     {
-        $this->twig = $twig;
+        $this->latte = $latte;
         $this->router = $router;
         $this->initDB();
     }
@@ -65,13 +63,13 @@ final class Login
         $port = 3306;
         $database = "login_example";
         $dsn = "mysql:host=$host;port=$port;dbname=$database";
-        $username = "hypermedia";
+        $username = "dbuser";
         $password = "geheim";
         $options = [
-            PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
-            PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8",
-            PDO::ATTR_PERSISTENT => true,
+            PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
+            PDO::ATTR_PERSISTENT         => true,
             PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
+            Mysql::ATTR_INIT_COMMAND     => "SET NAMES utf8",
         ];
         $this->pdo = new PDO($dsn, $username, $password, $options);
     }
@@ -96,7 +94,8 @@ final class Login
 
         if (count($this->messages) === 0) {
             if (!$this->authenticateUser()) {
-                $this->messages["login"] = "Invalid account email address or password.";
+                $this->messages["login"]
+                    = "Invalid account email address or password.";
             } else {
                 $this->business();
             }
@@ -148,7 +147,7 @@ final class Login
 
     /**
      * Replaces a user's password with a new one if an outdated hashing algorithm has been detected.
-     * @param string $userID The user ID.
+     * @param string $userID   The user ID.
      * @param string $password The new password.
      * @return void Returns nothing.
      */
@@ -162,14 +161,11 @@ final class Login
 
     /**
      * Renders the login form and displays it.
-     * @throws SyntaxError
-     * @throws RuntimeError
-     * @throws LoaderError
      */
     public function displayOutput(): void
     {
-        $this->twig->display("login.html.twig", [
-            "email" => $_POST["email"],
+        $this->latte->render("login.latte", [
+            "email"    => $_POST["email"],
             "messages" => $this->messages,
         ]);
     }
