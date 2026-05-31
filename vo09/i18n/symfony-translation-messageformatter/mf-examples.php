@@ -6,16 +6,16 @@ $pattern3 = "Heute ist der {datum,date,short}";
 $pattern4 = "Es ist jetzt {uhrzeit,time}";
 
 $mfSimple = new MessageFormatter("de-AT", $pattern1);
-echo $mfSimple->format(["name" => "Wolfgang"]) . "<br>";
+echo "{$mfSimple->format(["name" => "Wolfgang"])}<br>";
 
 $mfSimple->setPattern($pattern2);
-echo $mfSimple->format(["value" => 3]) . "<br>";
+echo "{$mfSimple->format(["value" => 3])}<br>";
 
 $mfSimple->setPattern($pattern3);
-echo $mfSimple->format(["datum" => new DateTime()]) . "<br>";
+echo "{$mfSimple->format(["datum" => new DateTime()])}<br>";
 
 $mfSimple->setPattern($pattern4);
-echo $mfSimple->format(["uhrzeit" => new DateTime()]) . "<br>";
+echo "{$mfSimple->format(["uhrzeit" => new DateTime()])}<br>";
 
 
 $patternPlural = "{nr,plural,
@@ -30,7 +30,7 @@ $patternSelect = "{gender,select,
     }";
 
 $mfComplex = new MessageFormatter("de-AT", $patternPlural);
-echo $mfComplex->format(["nr" => 5]) . "<br>";
+echo "{$mfComplex->format(["nr" => 5])}<br>";
 
 $mfComplex->setPattern($patternSelect);
 echo $mfComplex->format(["gender" => "other"]);

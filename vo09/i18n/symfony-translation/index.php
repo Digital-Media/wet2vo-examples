@@ -1,8 +1,5 @@
 <?php
 
-// Exclude deprecation notices (issues with symfony/translator and PHP 8.4)
-error_reporting(E_ALL & ~E_DEPRECATED);
-
 use Symfony\Component\Translation\Loader\JsonFileLoader;
 use Symfony\Component\Translation\Translator;
 
@@ -19,10 +16,10 @@ $translator->addResource("json", "translations/messages.de.json", "de-AT");
 $translator->addResource("json", "translations/messages.en.json", "en-US");
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="<?= $locale ?>">
 <head>
     <meta charset="UTF-8">
-    <title>i18n with symfony/translation</title>
+    <title>i18n & symfony/translation</title>
 </head>
 <body>
 <form method="get" action="<?= $_SERVER["SCRIPT_NAME"] ?>">

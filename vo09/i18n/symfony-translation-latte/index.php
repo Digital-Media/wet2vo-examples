@@ -1,10 +1,10 @@
 <?php
 
-use Symfony\Bridge\Twig\Extension\TranslationExtension;
+use Latte\Engine;
+use Latte\Essential\TranslatorExtension;
+use Latte\Loaders\FileLoader;
 use Symfony\Component\Translation\Loader\JsonFileLoader;
 use Symfony\Component\Translation\Translator;
-use Twig\Environment;
-use Twig\Loader\FilesystemLoader;
 
 require "vendor/autoload.php";
 
@@ -18,17 +18,14 @@ $translator->addLoader("json", new JsonFileLoader());
 $translator->addResource("json", "translations/messages.de.json", "de-AT");
 $translator->addResource("json", "translations/messages.en.json", "en-US");
 
-$twig = new Environment(
-    new FilesystemLoader("templates"),
-    [
-        "cache" => "cache",
-        "auto_reload" => true,
-    ],
-);
+$latte = new Engine();
+$latte->setLoader(new FileLoader(__DIR__ . "/templates"));
+$latte->setCacheDirectory(__DIR__ . "/cache");
 
-$twig->addExtension(new TranslationExtension($translator));
+$latte->addExtension(new TranslatorExtension($translator->trans(...)));
 
-$twig->display("index.html.twig", [
+$latte->render("index.latte", [
+    "locale" => $locale,
     "scriptName" => $_SERVER["SCRIPT_NAME"],
-    "nrOfMessages" => $_GET["nrOfMessages"] ?? null,
+    "nrOfMessages" => isset($_GET["nrOfMessages"]) ? intval($_GET["nrOfMessages"]) : null,
 ]);

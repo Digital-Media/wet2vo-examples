@@ -1,8 +1,5 @@
 <?php
 
-// Exclude deprecation notices (issues with symfony/translator and PHP 8.4)
-error_reporting(E_ALL & ~E_DEPRECATED);
-
 use Symfony\Component\Translation\Loader\YamlFileLoader;
 use Symfony\Component\Translation\Translator;
 

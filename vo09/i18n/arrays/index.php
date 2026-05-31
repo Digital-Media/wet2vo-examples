@@ -8,10 +8,10 @@ if (isset($_GET["locale"])) {
 require __DIR__ . "/locale/$locale.php";
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="<?= $locale ?>">
 <head>
     <meta charset="UTF-8">
-    <title>i18n with simple Arrays</title>
+    <title>i18n & Arrays</title>
 </head>
 <body>
 <form method="get" action="<?= $_SERVER["SCRIPT_NAME"] ?>">

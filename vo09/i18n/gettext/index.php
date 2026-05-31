@@ -14,10 +14,10 @@ textdomain($domain);
 bind_textdomain_codeset($domain, "UTF-8");
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="<?= str_replace('_', '-', Locale::canonicalize($locale)) ?>">
 <head>
     <meta charset="UTF-8">
-    <title>i18n with Gettext</title>
+    <title>i18n & Gettext</title>
 </head>
 <body>
 <form method="get" action="<?= $_SERVER["SCRIPT_NAME"] ?>">

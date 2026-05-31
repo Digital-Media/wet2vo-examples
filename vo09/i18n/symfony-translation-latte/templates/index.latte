@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="{$locale}">
+<head>
+    <meta charset="UTF-8">
+    <title>i18n & symfony/translation + Latte Templates</title>
+</head>
+<body>
+<form method="get" action="{$scriptName}">
+    <label for="language">{_'selectLabel'}</label><br>
+    <select name="locale" id="language">
+        <option value="en-US">{_'optionLabel'}</option>
+        <option value="en-US">English</option>
+        <option value="de-AT">Deutsch</option>
+    </select><br>
+    <label for="messages">{_'messageLabel'}</label><br>
+    <input type="number" id="messages" name="nrOfMessages"><br>
+    <button type="submit">{_'sendButton'}</button>
+</form>
+
+<p>{_'welcome'}</p>
+
+{if $nrOfMessages !== null}
+    <p n:if="$nrOfMessages === 0">{_'messages.zero'}</p>
+    <p n:elseif="$nrOfMessages === 1">{_'messages.one'}</p>
+    <p n:else>{_'messages.other', ['%d' => $nrOfMessages]}</p>
+{/if}
+</body>
+</html>
