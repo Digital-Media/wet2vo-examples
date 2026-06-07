@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <title>{$title}</title>
+    <style>
+        body {
+            font-family: Helvetica, Arial, sans-serif;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        th, td {
+            border: 1px solid #333;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+<h1>{$title}</h1>
+
+<div class="image">
+    <img src="images/wet2icon.png" alt="WET Icon" width="150" height="150">
+</div>
+
+<p>Übersicht der Vorlesungsinhalte:</p>
+
+<table>
+    <tr>
+        <th>Einheit</th>
+        <th>Thema</th>
+    </tr>
+    <tr n:foreach="$lectures as $unit => $topic">
+        <td>{$unit}</td>
+        <td>{$topic}</td>
+    </tr>
+</table>
+</body>
+</html>
