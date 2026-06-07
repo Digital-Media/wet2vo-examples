@@ -66,13 +66,19 @@ class MyPullParser
      */
     public function parse(string $file): void
     {
+        // Reset the properties so that everything works when parse() is called multiple times
+        $this->source = "";
+        $this->dish = "";
+        $this->ingredients = [];
+        $this->steps = [];
+
         $this->parser->open($file);
 
         while ($this->parser->read()) {
             if ($this->parser->nodeType === XMLReader::ELEMENT) {
                 switch ($this->parser->name) {
                     case "rezept":
-                        $this->source = $this->parser->getAttribute("quelle");
+                        $this->source = $this->parser->getAttribute("quelle") ?? "";
                         break;
                     case "gericht":
                         $this->dish = trim($this->parser->readString());
@@ -83,9 +89,8 @@ class MyPullParser
                     case "ingredienz":
                     case "menge":
                     case "einheit":
-                        $this->ingredients[array_key_last($this->ingredients)][$this->parser->name] = trim(
-                            $this->parser->readString(),
-                        );
+                        $lastIndex = array_key_last($this->ingredients);
+                        $this->ingredients[$lastIndex][$this->parser->name] = trim($this->parser->readString());
                         break;
                     case "schritt":
                         $this->steps[] = trim($this->parser->readString());

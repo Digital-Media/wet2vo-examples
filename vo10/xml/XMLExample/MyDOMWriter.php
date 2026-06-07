@@ -6,18 +6,10 @@ use Dom\XMLDocument;
 
 /**
  * Creates a new XML file based on the data passed to the constructor using DOM.
- * @package Hypermedia2\Vl09
+ * @package XMLExample
  */
 class MyDOMWriter
 {
-    // Writer-related properties
-
-    /**
-     * The DOM instance.
-     * @var XMLDocument
-     */
-    private XMLDocument $dom;
-
     // Document data properties
 
     /**
@@ -27,13 +19,11 @@ class MyDOMWriter
     private array $shows;
 
     /**
-     * Initializes the DOM document with the data used for XML creation.
+     * Initializes the writer with the data used for XML creation.
      * @param array $shows The data used for creating the XML file.
      */
     public function __construct(array $shows)
     {
-        $this->dom = XMLDocument::createEmpty("1.0", "UTF-8");
-        $this->dom->formatOutput = true;
         $this->shows = $shows;
     }
 
@@ -43,17 +33,20 @@ class MyDOMWriter
      */
     public function generateXML(string $file): void
     {
-        $shows = $this->dom->appendChild($this->dom->createElement("shows"));
+        $dom = XMLDocument::createEmpty("1.0", "UTF-8");
+        $dom->formatOutput = true;
+
+        $shows = $dom->appendChild($dom->createElement("shows"));
 
         foreach ($this->shows as $show) {
-            $showElem = $shows->appendChild($this->dom->createElement("show"));
+            $showElem = $shows->appendChild($dom->createElement("show"));
             foreach ($show as $tag => $data) {
-                $showData = $this->dom->createElement($tag);
+                $showData = $dom->createElement($tag);
                 $showData->textContent = $data;
                 $showElem->appendChild($showData);
             }
         }
 
-        $this->dom->saveXmlFile($file);
+        $dom->saveXmlFile($file);
     }
 }

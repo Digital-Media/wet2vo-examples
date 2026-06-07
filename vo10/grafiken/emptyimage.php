@@ -3,7 +3,6 @@
 // Create image
 $image = imagecreatetruecolor(300, 300);
 
-// Display image
+// Output image
 header("Content-type: image/png");
 imagepng($image);
-imagedestroy($image);

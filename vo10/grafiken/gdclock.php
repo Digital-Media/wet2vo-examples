@@ -95,7 +95,6 @@ imagefill(
     $red,
 );
 
-// Draw image
+// Output image
 header("Content-type: image/png");
 imagepng($image);
-imagedestroy($image);

@@ -2,11 +2,12 @@
 
 namespace XMLExample;
 
+use Dom\Element;
 use Dom\XMLDocument;
 
 /**
  * Creates a new object-oriented parser based on DOM and parses the XML Tirolerknödel recipe.
- * @package Hypermedia2\Ue09
+ * @package XMLExample
  */
 class MyDOMParser
 {
@@ -42,23 +43,29 @@ class MyDOMParser
      */
     public function parse(string $file): void
     {
+        $this->source = "";
+        $this->dish = "";
+        $this->ingredients = [];
+        $this->steps = [];
+
         $dom = XMLDocument::createFromFile($file);
 
-        $this->source = $dom->documentElement->getAttribute("quelle");
+        $this->source = $dom->documentElement->getAttribute("quelle") ?? "";
 
-        $this->dish = $dom->querySelector("gericht")->textContent;
+        $this->dish = trim($dom->querySelector("gericht")->textContent);
 
         foreach ($dom->querySelectorAll("zutat") as $ingredient) {
             $this->ingredients[] = [];
             foreach ($ingredient->childNodes as $child) {
-                if ($child->nodeType === XML_ELEMENT_NODE) {
-                    $this->ingredients[array_key_last($this->ingredients)][$child->tagName] = $child->textContent;
+                if ($child instanceof Element) {
+                    $lastIndex = array_key_last($this->ingredients);
+                    $this->ingredients[$lastIndex][$child->tagName] = trim($child->textContent);
                 }
             }
         }
 
         foreach ($dom->querySelectorAll("schritt") as $step) {
-            $this->steps[] = $step->textContent;
+            $this->steps[] = trim($step->textContent);
         }
     }
 }

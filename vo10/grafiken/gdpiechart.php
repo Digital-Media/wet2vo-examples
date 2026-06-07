@@ -32,7 +32,6 @@ imagefilledarc($image, $width / 2, $height / 2, $width, $height / 2, 0, 45, $nav
 imagefilledarc($image, $width / 2, $height / 2, $width, $height / 2, 45, 75, $gray, IMG_ARC_PIE);
 imagefilledarc($image, $width / 2, $height / 2, $width, $height / 2, 75, 360, $red, IMG_ARC_PIE);
 
-// Flush the image
+// Output image
 header("Content-type: image/png");
 imagepng($image);
-imagedestroy($image);

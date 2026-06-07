@@ -14,8 +14,6 @@ imagefilledrectangle($image1, 70, 120, 280, 250, $yellow);
 // Copy part of $image1 to $image2
 imagecopy($image2, $image1, 0, 0, 50, 50, 100, 100);
 
-// Output and clean up
+// Output image
 header("Content-type: image/png");
 imagepng($image2);
-imagedestroy($image1);
-imagedestroy($image2);

@@ -46,7 +46,6 @@ if ($p) {
     imagettftext($image, $fontSize, 0, $textX, $textY, $black, $font, $text);
 }
 
-// Output the image
+// Output image
 header("Content-type: image/png");
 imagepng($image);
-imagedestroy($image);

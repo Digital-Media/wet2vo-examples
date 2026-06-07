@@ -20,7 +20,7 @@ $xmlParser->parse("rezept.xml");
 <ul>
     <?php
     foreach ($xmlParser->ingredients as $ingredient) {
-        echo "<li>" . $ingredient["menge"] . " " . $ingredient["einheit"] . " " . $ingredient["ingredienz"] . "</li>";
+        echo "<li>{$ingredient["menge"]} {$ingredient["einheit"]} {$ingredient["ingredienz"]}</li>";
     }
     ?>
 </ul>

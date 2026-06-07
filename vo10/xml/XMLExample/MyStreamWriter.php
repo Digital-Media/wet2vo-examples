@@ -6,7 +6,7 @@ use XMLWriter;
 
 /**
  * Creates a new XML file based on the data passed to the constructor using XMLWriter.
- * @package Hypermedia2\Vl09
+ * @package XMLExample
  */
 class MyStreamWriter
 {

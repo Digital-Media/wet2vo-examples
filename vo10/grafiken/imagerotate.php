@@ -14,7 +14,6 @@ imagefilledrectangle($image, 70, 120, 280, 250, $yellow);
 // Rotate image
 $image = imagerotate($image, 45, $black);
 
-// Output and clean up
+// Output image
 header("Content-type: image/png");
 imagepng($image);
-imagedestroy($image);
