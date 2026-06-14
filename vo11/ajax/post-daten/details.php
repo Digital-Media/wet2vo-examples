@@ -3,16 +3,11 @@
 header("Content-Type: text/plain");
 
 if (!empty($_POST)) {
-    $output = implode(
-        PHP_EOL,
-        array_map(
-            function ($key, $value) {
-                return "$key: $value";
-            },
-            array_keys($_POST),
-            $_POST,
-        ),
-    );
+    $lines = [];
+    foreach ($_POST as $key => $value) {
+        $lines[] = "$key: $value";
+    }
+    $output = implode(PHP_EOL, $lines);
 
     http_response_code(200);
     echo $output;

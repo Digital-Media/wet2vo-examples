@@ -1,8 +1,8 @@
-{% extends "base.html.twig" %}
+{layout 'base.latte'}
 
-{% block title %}REST API Example{% endblock %}
+{block title}REST API Example{/block}
 
-{% block main %}
+{block main}
     <hgroup>
         <h1>REST API Example</h1>
         <p class="lead">Creating a simple REST API with GET and POST.</p>
@@ -12,37 +12,36 @@
     <p>This is the main page. Use it to access other parts of the example.</p>
 
     <div class="list-group">
-        <a href="{{ url_for("/users") }}" class="list-group-item list-group-item-action d-flex gap-3 py-3">
+        <a href="{url_for('/users')}" class="list-group-item list-group-item-action d-flex gap-3 py-3">
             <svg class="bi-2 align-self-center flex-shrink-0">
-                <use href="{{ get_base_path() }}/../views/images/bootstrap-icons.svg#people"></use>
+                <use href="{get_base_path()}/../views/images/bootstrap-icons.svg#people"></use>
             </svg>
             <div class="flex-fill">
                 <h6 class="mb-0">GET /users</h6>
                 <p class="mb-0 opacity-75">Lists all the users stored in the database.</p>
             </div>
         </a>
-        <a href="{{ url_for("/users/1") }}" class="list-group-item list-group-item-action d-flex gap-3 py-3">
+        <a href="{url_for('/users/1')}" class="list-group-item list-group-item-action d-flex gap-3 py-3">
             <svg class="bi-2 align-self-center flex-shrink-0">
-                <use href="{{ get_base_path() }}/../views/images/bootstrap-icons.svg#person"></use>
+                <use href="{get_base_path()}/../views/images/bootstrap-icons.svg#person"></use>
             </svg>
             <div class="flex-fill">
                 <h6 class="mb-0">GET /users/1</h6>
                 <p class="mb-0 opacity-75">Retrieves the user with the ID 1.</p>
             </div>
         </a>
-        <a href="{{ url_for("/adduser") }}" class="list-group-item list-group-item-action d-flex gap-3 py-3">
+        <a href="{url_for('/adduser')}" class="list-group-item list-group-item-action d-flex gap-3 py-3">
             <svg class="bi-2 align-self-center flex-shrink-0">
-                <use href="{{ get_base_path() }}/../views/images/bootstrap-icons.svg#person-plus"></use>
+                <use href="{get_base_path()}/../views/images/bootstrap-icons.svg#person-plus"></use>
             </svg>
             <div class="flex-fill">
                 <h6 class="mb-0">GET /adduser</h6>
                 <p class="mb-0 opacity-75">Shows a form to add a user and invoke <code>POST /users</code>.</p>
             </div>
         </a>
-        <a href="{{ url_for("/createdb") }}"
-           class="list-group-item list-group-item-action d-flex gap-3 py-3">
+        <a href="{url_for('/createdb')}" class="list-group-item list-group-item-action d-flex gap-3 py-3">
             <svg class="bi-2 align-self-center flex-shrink-0">
-                <use href="{{ get_base_path() }}/../views/images/bootstrap-icons.svg#tools"></use>
+                <use href="{get_base_path()}/../views/images/bootstrap-icons.svg#tools"></use>
             </svg>
             <div class="flex-fill">
                 <h6 class="mb-0">GET /createdb</h6>
@@ -52,4 +51,4 @@
             </div>
         </a>
     </div>
-{% endblock main %}
+{/block main}

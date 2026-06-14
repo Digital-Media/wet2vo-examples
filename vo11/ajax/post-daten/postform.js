@@ -1,36 +1,61 @@
 "use strict";
 
-const request = new XMLHttpRequest();
-const form = document.getElementById("registerForm");
-form.addEventListener("submit", sendAJAXRequest);
-
 /**
- * Send a new asynchronous request to the specified resource.
- * @param event The event object.
+ * Sends the registration form to details.php via an asynchronous POST
+ * request and displays the returned data without reloading the page.
+ *
+ * Triggered by the form's "submit" event. The default submission (and
+ * thus a page reload) is prevented. The form is taken from the event
+ * itself, wrapped in a FormData object and sent as the request body; the
+ * server echoes the received values back as plain text, one "key: value"
+ * pair per line.
+ *
+ * @param {SubmitEvent} event The submit event fired by the form.
+ * @returns {Promise<void>}
  */
-function sendAJAXRequest(event) {
-    const formData = new FormData(form);
-    request.open("POST", "details.php", true);
-    request.addEventListener("load", handleResponse);
-    request.send(formData);
+async function sendRequest(event) {
+    // Prevent the classic form submission (and the page reload).
     event.preventDefault();
-}
 
-/**
- * Handle the response and insert the content into the page.
- */
-function handleResponse() {
-    const ul = document.getElementById("loginDetails");
-    if (request.status === 200) {
-        const data = request.responseText.split("\n");
-        for (let i = 0; i < data.length; i++) {
-            const entry = document.createElement("li");
-            entry.textContent = data[i];
-            ul.appendChild(entry);
+    // event.target is the form that triggered the submit event.
+    const formData = new FormData(event.target);
+    const list = document.getElementById("loginDetails");
+
+    // Clear the list so results do not accumulate on repeated submits.
+    list.innerHTML = "";
+
+    try {
+        // The browser sets the Content-Type header automatically when a FormData object is passed as the body.
+        const response = await fetch("details.php", {
+            method: "POST",
+            headers: {"Accept": "text/plain"},
+            body: formData
+        });
+
+        if (response.ok) {
+            // The response is plain text with one entry per line.
+            const text = await response.text();
+            const entries = text.split("\n");
+
+            for (let i = 0; i < entries.length; i++) {
+                const item = document.createElement("li");
+                item.textContent = entries[i];
+                list.appendChild(item);
+            }
+        } else {
+            // HTTP error (e.g., 400): the request reached the server, but the server reported a problem.
+            const item = document.createElement("li");
+            item.textContent = "A problem occurred with the request!";
+            list.appendChild(item);
         }
-    } else {
-        const error = document.createElement("li");
-        error.textContent = "An error occurred!";
-        ul.appendChild(error);
+    } catch (error) {
+        // Network error: the server could not be reached at all.
+        const item = document.createElement("li");
+        item.textContent = "The server could not be reached.";
+        list.appendChild(item);
     }
 }
+
+// React to the form's submission. Because the script is included with
+// "defer", the DOM is already available at this point.
+document.getElementById("registerForm").addEventListener("submit", sendRequest);

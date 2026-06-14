@@ -2,7 +2,9 @@
 
 namespace RestApiExample;
 
+use Latte\Engine;
 use PDO;
+use Pdo\Mysql;
 use PDOException;
 use Twig\Environment;
 use Twig\Error\LoaderError;
@@ -10,10 +12,10 @@ use Twig\Error\RuntimeError;
 use Twig\Error\SyntaxError;
 
 /**
- * Creates the database, table and user entries for this example to work.
+ * Creates the database, table, and user entries for this example to work.
  * @package RestApiExample
  * @author Wolfgang Hochleitner <wolfgang.hochleitner@fh-hagenberg.at>
- * @version 2025
+ * @version 2026
  */
 class CreateDB
 {
@@ -23,9 +25,9 @@ class CreateDB
     private PDO $pdo;
 
     /**
-     * @var Environment Provides a Twig object to display HTML templates.
+     * @var Engine Provides a Latte object to display HTML templates.
      */
-    private Environment $twig;
+    private Engine $latte;
 
     /**
      * @var string[][] An array of users that are to be inserted into the database.
@@ -50,9 +52,9 @@ class CreateDB
     /**
      * Creates a new object for database initialization. First, an array of users is defined which is later stored in
      * the database. Status variables are then initialized and a database connection is established.
-     * @param Environment $twig The Twig object for displaying a response.
+     * @param Engine $latte The Latte object for displaying a response.
      */
-    public function __construct(Environment $twig)
+    public function __construct(Engine $latte)
     {
         $this->users = [
             [
@@ -69,7 +71,7 @@ class CreateDB
             ],
         ];
 
-        $this->twig = $twig;
+        $this->latte = $latte;
 
         $this->schemaCreated = false;
         $this->tableCreated = false;
@@ -87,13 +89,13 @@ class CreateDB
         $host = "db";
         $port = 3306;
         $dsn = "mysql:host=$host;port=$port";
-        $username = "hypermedia";
+        $username = "dbuser";
         $password = "geheim";
         $options = [
             PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
-            PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8",
             PDO::ATTR_PERSISTENT => true,
             PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
+            Mysql::ATTR_INIT_COMMAND => "SET NAMES utf8",
         ];
         $this->pdo = new PDO($dsn, $username, $password, $options);
     }
@@ -125,13 +127,13 @@ class CreateDB
         try {
             $this->pdo->exec($query);
             $this->tableCreated = true;
-        } catch (PDOException $exception) {
+        } catch (PDOException) {
             // If there's an exception, the table was already created. Do nothing.
         }
     }
 
     /**
-     * Add example user accounts to the table "user". First, all entries are queried, then before inserting a new user
+     * Add example user accounts to the table "user". First, all entries are queried. Then before inserting a new user
      * a check is performed if this username is already present in the table. If this is the case, no new user is
      * inserted.
      * @return void Returns nothing.
@@ -157,15 +159,11 @@ class CreateDB
     }
 
     /**
-     * Displays output (a response) by showing a Twig template.
-     * @return void Returns nothing
-     * @throws LoaderError Displays a LoaderError if the template file cannot be loaded.
-     * @throws RuntimeError Displays a RuntimeError if there is an issue at runtime.
-     * @throws SyntaxError Displays a SyntaxError if there is an error in the template.
+     * Displays output (a response) by showing a Latte template.
      */
     public function displayOutput(): void
     {
-        $this->twig->display("createdb.html.twig", [
+        $this->latte->render("createdb.latte", [
             "schemaCreated" => $this->schemaCreated ? "Yes" : "No",
             "tableCreated" => $this->tableCreated ? "Yes" : "No",
             "nrOfUsersCreated" => $this->nrOfUsersCreated,

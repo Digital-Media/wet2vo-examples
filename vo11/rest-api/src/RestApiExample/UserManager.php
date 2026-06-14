@@ -3,12 +3,13 @@
 namespace RestApiExample;
 
 use PDO;
+use Pdo\Mysql;
 
 /**
  * A simple REST API example for listing and creating users.
  * @package RestApiExample
  * @author Wolfgang Hochleitner <wolfgang.hochleitner@fh-hagenberg.at>
- * @version 2025
+ * @version 2026
  */
 class UserManager
 {
@@ -46,13 +47,13 @@ class UserManager
         $port = 3306;
         $database = "rest_api_example";
         $dsn = "mysql:host=$host;port=$port;dbname=$database";
-        $username = "hypermedia";
+        $username = "dbuser";
         $password = "geheim";
         $options = [
             PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
-            PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8",
             PDO::ATTR_PERSISTENT => true,
             PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
+            Mysql::ATTR_INIT_COMMAND => "SET NAMES utf8",
         ];
         $this->pdo = new PDO($dsn, $username, $password, $options);
     }
@@ -148,10 +149,12 @@ class UserManager
      */
     private function showResponse(int $statusCode, ?array $content = null): void
     {
-        // If the request's Accept header contains our content type
-        if (str_contains($_SERVER["HTTP_ACCEPT"], $this->contentType)) {
+        $acceptHeader = $_SERVER["HTTP_ACCEPT"] ?? "";
+
+        // If the request's Accept header contains our content type or a wildcard (*/*)
+        if (str_contains($acceptHeader, $this->contentType) || str_contains($acceptHeader, "*/*")) {
             http_response_code($statusCode);
-            header("Content-Type: " . $this->contentType);
+            header("Content-Type: {$this->contentType}");
             if (isset($content)) {
                 echo json_encode($content, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE);
             }

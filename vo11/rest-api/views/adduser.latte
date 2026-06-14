@@ -1,14 +1,14 @@
-{% extends "base.html.twig" %}
+{extends 'base.latte'}
 
-{% block title %}REST API Example: Add User{% endblock title %}
-{% block main %}
+{block title}REST API Example: Add User{/block}
+{block main}
     <h2>GET /adduser</h2>
     <p>This is a form for adding a new user. It calls the route <code>POST /users</code> and submits the entered
         username and real name to be added to the database.</p>
 
     <div class="border p-3 mt-5">
         <h3>Enter User Details</h3>
-        <form method="post" action="{{ url_for("/users") }}">
+        <form method="post" action="{url_for('/users')}">
             <div class="mb-3">
                 <label for="usernameInput" class="form-label">Username</label>
                 <input type="text" class="form-control" id="usernameInput" name="username"
@@ -24,4 +24,4 @@
             <button type="submit" class="btn btn-primary">Add user</button>
         </form>
     </div>
-{% endblock main %}
+{/block}

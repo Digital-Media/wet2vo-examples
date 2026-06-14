@@ -5,3 +5,10 @@ composer.phar
 /logs/*
 !/logs/README.md
 /vendor/
+
+# Claude Code local settings
+.claude/settings.local.json
+CLAUDE.md
+
+# PHP-CS-Fixer cache
+.php-cs-fixer.cache

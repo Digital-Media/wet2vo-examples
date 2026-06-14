@@ -15,11 +15,14 @@ $capitals = [
 
 header("Content-Type: text/plain");
 
-$index = $_GET["index"] ?? null;
-
-if (array_key_exists($index, $capitals)) {
+if (!isset($_GET["index"])) {
+    // No parameter index was given.
+    http_response_code(400);
+} elseif (array_key_exists($_GET["index"], $capitals)) {
+    // Index is valid.
     http_response_code(200);
-    echo $capitals[$index];
+    echo $capitals[$_GET["index"]];
 } else {
-    http_response_code($index === null ? 400 : 404);
+    // Index has been passed, but is not valid.
+    http_response_code(404);
 }

@@ -21,9 +21,9 @@ $titles = $data->titles;
 <div>
     <?php
     if (in_array($_GET["search"], $titles)) {
-        echo("Exact search String found: " . $_GET["search"]);
+        echo("Exact search String found: {$_GET["search"]}");
     } else {
-        echo("Exact search String not found: " . $_GET["search"]);
+        echo("Exact search String not found: {$_GET["search"]}");
     }
     ?>
 </div>

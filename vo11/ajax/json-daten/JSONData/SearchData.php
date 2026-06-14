@@ -7,7 +7,7 @@ namespace JSONData;
  * This class serves as a simple data source that is being used for the search suggest feature. Since this example does
  * not work with actual data, you can define the strings that are being queried here.
  * @author Wolfgang Hochleitner <wolfgang.hochleitner@fh-hagenberg.at>
- * @version 2025
+ * @version 2026
  */
 class SearchData
 {
@@ -24,12 +24,12 @@ class SearchData
     {
         $this->titles = [
             "Die FH",
-            "HYP2",
+            "WET2VO",
             "FH",
             "Hagenberg",
             "Datenbanken",
             "Medientechnik und -design",
-            "MTD24",
+            "MTD25",
             "MTD",
             "PHP",
             "JavaScript",
@@ -47,12 +47,16 @@ class SearchData
     public function search(string $searchString): string
     {
         $jsonResponse["words"] = [];
-        foreach ($this->titles as $entry) {
-            if (mb_stripos($entry, $searchString, 0, "UTF-8") !== false) {
-                $jsonResponse["words"][] = $entry;
+
+        if ($searchString !== "") {
+            foreach ($this->titles as $entry) {
+                if (mb_stripos($entry, $searchString, 0, "UTF-8") !== false) {
+                    $jsonResponse["words"][] = $entry;
+                }
             }
+            sort($jsonResponse["words"]);
         }
-        sort($jsonResponse["words"]);
+
         $jsonResponse["count"] = count($jsonResponse["words"]);
 
         return json_encode($jsonResponse);
