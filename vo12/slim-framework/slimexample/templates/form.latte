@@ -1,3 +1,4 @@
+{parameters string $placeholder = ''}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,9 +7,9 @@
 </head>
 <body>
 <h1>Tell Me Your Name</h1>
-<form action="{{ url_for('result') }}" method="post">
+<form action="{url_for(result)}" method="post">
     <label for="name">Name:</label>
-    <input type="text" id="name" name="name" value="{{ placeholder }}">
+    <input type="text" id="name" name="name" value="{$placeholder}">
     <button type="submit">Send</button>
 </form>
 </body>

@@ -1,21 +1,19 @@
 <?php
 
 use Slim\Factory\AppFactory;
-use Slim\Psr7\Request;
-use Slim\Psr7\Response;
+use Psr\Http\Message\ResponseInterface as Response;
+use Psr\Http\Message\ServerRequestInterface as Request;
 
-require "../vendor/autoload.php";
+require __DIR__ . "/../vendor/autoload.php";
 
 $app = AppFactory::create();
 
-$app->setBasePath("/hyp2vo-t1-examples/vl11/slim-framework/helloworld/public");
+$app->setBasePath("/wet2vo-examples/vo12/slim-framework/helloworld/public");
+$app->addErrorMiddleware(true, false, false);
 
-$app->get(
-    "/",
-    function (Request $request, Response $response, array $args) {
-        $response->getBody()->write("Hello world!");
-        return $response;
-    }
-);
+$app->get("/", function (Request $request, Response $response, array $args) {
+    $response->getBody()->write("Hello world!");
+    return $response;
+});
 
 $app->run();

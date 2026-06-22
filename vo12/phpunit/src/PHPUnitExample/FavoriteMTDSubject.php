@@ -7,7 +7,7 @@ use InvalidArgumentException;
 
 /**
  * Stores and prints a user's favorite subject of the Media Technology and Design program.
- * @package Hypermedia2\Vl11
+ * @package PHPUnitExample
  */
 class FavoriteMTDSubject
 {
@@ -18,13 +18,13 @@ class FavoriteMTDSubject
     private(set) string $favoriteSubject;
 
     /**
-     * FavoriteMTDSubject constructor.
+     * The FavoriteMTDSubject constructor.
      * @param string $favoriteSubject The favorite subject to store.
      * @throws InvalidArgumentException Thrown if the argument is an empty string.
      */
     public function __construct(string $favoriteSubject)
     {
-        if (trim($favoriteSubject) === "") {
+        if (mb_trim($favoriteSubject) === "") {
             throw new InvalidArgumentException("Favorite subject cannot be empty. You must choose!");
         }
         $this->favoriteSubject = $favoriteSubject;
@@ -36,7 +36,7 @@ class FavoriteMTDSubject
      */
     public function say(): string
     {
-        return "The best subject in MTD is " . $this->favoriteSubject . "!";
+        return "The best subject in MTD is $this->favoriteSubject!";
     }
 
     /**
@@ -47,11 +47,11 @@ class FavoriteMTDSubject
      */
     public function respondTo(string $input): string
     {
-        $input = strtolower($input);
-        $myFavoriteSubject = strtolower($this->favoriteSubject);
+        $input = mb_strtolower($input);
+        $myFavoriteSubject = mb_strtolower($this->favoriteSubject);
 
         if (mb_strpos($input, $myFavoriteSubject) === false) {
-            throw new Exception(sprintf("Never! %s is the best subject in MTD!", $this->favoriteSubject));
+            throw new Exception("Never! $this->favoriteSubject is the best subject in MTD!");
         }
 
         return "Absolutely true!";

@@ -27,18 +27,18 @@ class FavoriteMTDSubjectTest extends TestCase
      */
     public function testSayFavoriteSubject()
     {
-        $subject = new FavoriteMTDSubject("Hypermedia 2");
-        $this->assertEquals("The best subject in MTD is Hypermedia 2!", $subject->say());
+        $subject = new FavoriteMTDSubject("Web Technologies");
+        $this->assertEquals("The best subject in MTD is Web Technologies!", $subject->say());
     }
 
     /**
-     * Tests, if the respondTo methods outputs agreement if the subject matches.
+     * Tests, if the respondTo method outputs agreement if the subject matches.
      * @throws Exception
      */
     public function testRespondToInAgreement()
     {
-        $subject = new FavoriteMTDSubject("Hypermedia 2");
-        $opinion = "Hypermedia 2 is the best!";
+        $subject = new FavoriteMTDSubject("Web Technologies");
+        $opinion = "Web Technologies is the best!";
 
         $this->assertEquals("Absolutely true!", $subject->respondTo($opinion));
     }
@@ -49,8 +49,8 @@ class FavoriteMTDSubjectTest extends TestCase
      */
     public function testRespondToInDisagreement()
     {
-        $subject = new FavoriteMTDSubject("Hypermedia 2");
-        $opinion = "I love Media Technology 2!";
+        $subject = new FavoriteMTDSubject("Web Technologies");
+        $opinion = "I love Algorithmic Thinking!";
 
         $this->expectException(Exception::class);
 
